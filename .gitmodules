@@ -1,0 +1,3 @@
+[submodule "content/themes/saga"]
+	path = content/themes/saga
+	url = git@github.com:jgontrum/ghost-theme-saga.git
