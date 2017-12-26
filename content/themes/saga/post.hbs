@@ -1,6 +1,7 @@
 {{!< default}}
 {{#post ~}}
-<header id="header" class="animated fadeIn"{{#if feature_image}} style="background-image: url({{feature_image}})"{{/if}}>
+<header id="header" class="animated fadeIn">
+    {{!-- {{#if feature_image}} style="background-image: url({{feature_image}})"{{/if}} --}}
     <div class="header-background">
     <section class="blog-content">
         <a id="site-url" class="blog-title" href="{{@blog.url}}">{{@blog.title}}</a>
@@ -17,9 +18,14 @@
 </header>
 <main id="main" class="content">
     <article itemtype="http://schema.org/BlogPosting" class="animated fadeIn content post {{post_class}}">
-        <section class="post-content">
-            {{content}}
+      {{#if feature_image}}
+        <section class="post-image">
+          <img src="{{feature_image}}" alt="">
         </section>
+      {{/if}}
+      <section class="post-content">
+          {{content}}
+      </section>
     </article>
 </main>
 {{~/post}}
