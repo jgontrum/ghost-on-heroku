@@ -10,6 +10,7 @@
     <link href="//fonts.googleapis.com/css?family=Noto+Sans:300,400,700" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic" rel="stylesheet" type="text/css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" />
     <link href="{{asset 'css/style.css'}}" rel="stylesheet" type="text/css">
     <link href="{{asset 'css/social-share-kit.css'}}" rel="stylesheet" type="text/css">
     <link href="{{asset 'css/animate.min.css'}}" rel="stylesheet" type="text/css">
@@ -30,13 +31,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/de.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.4.1/moment-timezone-with-data-2010-2020.min.js"></script>
-
-    <script type="text/javascript" src="js/social-share-kit.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function () {
-        SocialShareKit.init();
-
         moment.locale('de');
 
         $('.timesince').each(function (i, date) {
@@ -47,6 +45,22 @@
               .tz('Europe/Berlin')
               .format('LL')
           );
+        });
+
+        $("[data-fancybox]").fancybox({
+          loop: true,
+          protect: true,
+          buttons: [
+            'slideShow',
+            'thumbs',
+            'share',
+            //'download',
+            'zoom',
+            'close'
+          ],
+          animationEffect: "zoom",
+          transitionEffect : "slide",
+          lang : 'de'
         });
       });
     </script>

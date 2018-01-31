@@ -1,7 +1,7 @@
 body {
     height: 100%;
     min-height: 100%;
-    background: darken($white, 5%);
+    background: rgb(26, 25, 25);
     font-family: $font;
     @include font-size(14);
     line-height: 1.8;

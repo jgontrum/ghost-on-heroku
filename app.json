@@ -34,6 +34,14 @@
     "S3_ASSET_HOST_URL": {
       "description": "Optional custom CDN asset host url, if using S3 file storage.",
       "required": false
+    },
+    "MAILGUN_SMTP_LOGIN": {
+      "description": "Optional Mailgun SMTP login.",
+      "required": false
+    },
+    "MAILGUN_SMTP_PASSWORD": {
+      "description": "Optional Mailgun SMTP password.",
+      "required": false
     }
   }
 }
