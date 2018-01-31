@@ -2,12 +2,19 @@
   {{#foreach posts}}
     <article class="{{post_class}}" style="opacity: 0;">
         {{#if feature_image}}
-        <a href="https://zimage.global.ssl.fastly.net/?url={{feature_image}}&w=1920" data-fancybox="gallery" data-caption="{{{title}}}" class="post-image">
-            <img src="https://zimage.global.ssl.fastly.net/?url={{feature_image}}&w=600" alt="">
-            <h2 class="post-title">{{{title}}}</h2>
-        </a>
+          <a href="https://zimage.global.ssl.fastly.net/?url={{feature_image}}&w=1920" data-fancybox="gallery" data-caption="{{{title}}}" class="post-image">
+              <img src="https://zimage.global.ssl.fastly.net/?url={{feature_image}}&w=600" alt="">
+              <h2 class="post-title">{{{title}}}</h2>
+          </a>
         {{else}}
-          <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
+          {{#if (firstimage (content))}}
+            <a href="https://zimage.global.ssl.fastly.net/?url={{firstimage (content)}}&w=1920" data-fancybox="gallery" data-caption="{{{title}}}" class="post-image">
+              <img src="https://zimage.global.ssl.fastly.net/?url={{firstimage (content)}}&w=600" alt="">
+              <h2 class="post-title">{{{title}}}</h2>
+            </a>
+          {{else}}
+             <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
+          {{/if}}
         {{/if}}
     </article>
   {{~/foreach}}

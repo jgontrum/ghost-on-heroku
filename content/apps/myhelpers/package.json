@@ -1,0 +1,12 @@
+{
+  "name":"myhelpers",
+  "version": "0.0.1",
+  "dependencies": {
+    "ghost-app": "github:tryghost/ghost-app#a319cd6"
+  },
+  "ghost": {
+      "permissions": {
+          "helpers": ["compare", "firstimage"]
+      }
+  }
+}
