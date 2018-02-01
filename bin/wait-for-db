@@ -14,8 +14,15 @@ function pingDatabaseUntilConnected() {
       setTimeout(pingDatabaseUntilConnected, 5000);
     } else {
       console.error('Database connected.');
-      connection.end();
-      process.exit(0);
+      connection.query('UPDATE settings SET `value` = "" WHERE `key` = "installed_apps";', function (error, results, fields) {
+        if (error) {
+          console.error(`Could not reset app install: ${error.message}`);
+        } else {
+          console.error('Database reset app install');
+          connection.end();
+          process.exit(0);
+        }
+      });
     }
   });
 }

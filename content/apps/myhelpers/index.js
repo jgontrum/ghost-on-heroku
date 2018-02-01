@@ -8,6 +8,7 @@ myHelpers = App.extend({
     uninstall: function() {},
 
     activate: function() {
+        console.log('myhelpers: activate()');
         this.ghost.helpers.register('firstimage', this.firstimageHelper);
         this.ghost.helpers.register('imageresize', this.imageResizeHelper);
     },
