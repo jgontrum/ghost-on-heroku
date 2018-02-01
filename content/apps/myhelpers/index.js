@@ -29,10 +29,10 @@ myHelpers = App.extend({
 
   imageResizeHelper: function(url, width) {
     if (url && url[0] === '/') return url;
-    return 'https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy'
-    + '?container=focus'
-    + '&resize_w=' + width
-    + '&url=' + url;
+    url = url.replace('https://', '').replace('http://', '');
+    return '//images.weserv.nl/'
+    + '?url=' + encodeURIComponent(urk)
+    + '&w=' + width
   }
 });
 
