@@ -31,7 +31,7 @@ myHelpers = App.extend({
     if (url && url[0] === '/') return url;
     url = url.replace('https://', '').replace('http://', '');
     return '//images.weserv.nl/'
-    + '?url=' + encodeURIComponent(urk)
+    + '?url=' + encodeURIComponent(url)
     + '&w=' + width
   }
 });
