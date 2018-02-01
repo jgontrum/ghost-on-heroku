@@ -6,7 +6,7 @@
   },
   "ghost": {
       "permissions": {
-          "helpers": ["compare", "firstimage"]
+          "helpers": ["firstimage", "imageresize"]
       }
   }
 }

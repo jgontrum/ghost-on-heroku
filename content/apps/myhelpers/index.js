@@ -8,40 +8,11 @@ myHelpers = App.extend({
     uninstall: function() {},
 
     activate: function() {
-        this.ghost.helpers.register('compare', this.compareHelper);
         this.ghost.helpers.register('firstimage', this.firstimageHelper);
+        this.ghost.helpers.register('imageresize', this.imageResizeHelper);
     },
 
     deactivate: function() {},
-
-    compareHelper: function (v1, operator, v2, options) {
-        switch (operator) {
-            case '==':
-                return (v1 == v2)  ? options.fn(this) : options.inverse(this);
-            case '===':
-                return (v1 === v2) ? options.fn(this) : options.inverse(this);
-            case '!=':
-                return (v1 != v2)  ? options.fn(this) : options.inverse(this);
-            case '!==':
-                return (v1 !== v2) ? options.fn(this) : options.inverse(this);
-            case '<':
-                return (v1 < v2)   ? options.fn(this) : options.inverse(this);
-            case '<=':
-                return (v1 <= v2)  ? options.fn(this) : options.inverse(this);
-            case '>':
-                return (v1 > v2)   ? options.fn(this) : options.inverse(this);
-            case '>=':
-                return (v1 >= v2)  ? options.fn(this) : options.inverse(this);
-            case '&&':
-                return (v1 && v2)  ? options.fn(this) : options.inverse(this);
-            case '||':
-                return (v1 || v2)  ? options.fn(this) : options.inverse(this);
-            case 'typeof':
-                return (typeof v1 == v2)  ? options.fn(this) : options.inverse(this);
-            default:
-                return options.inverse(this);
-        }
-    },
 
     firstimageHelper: function (input) {
       var result = String(input).match(/<img.*?>/g);
@@ -53,6 +24,14 @@ myHelpers = App.extend({
         }
       }
       return false;
+  },
+
+  imageResizeHelper: function(url, width) {
+    if (url && url[0] === '/') return url;
+    return 'https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy'
+    + '?container=focus'
+    + '&resize_w=' + width
+    + '&url=' + url;
   }
 });
 
