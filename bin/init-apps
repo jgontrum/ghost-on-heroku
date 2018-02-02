@@ -13,16 +13,24 @@ function pingDatabaseUntilConnected() {
       console.error(`Database not yet available: ${error.message}`);
       setTimeout(pingDatabaseUntilConnected, 5000);
     } else {
+      /*
+      The value for 'installed_apps' has to be set to '' before ghost starts.
+      Ghost thinks it has already installed the apps, but the installation 
+      has been lost with the redeployment.
+      */
       connection.query('UPDATE settings SET `value` = "" WHERE `key` = "installed_apps";', function (error, results, fields) {
         if (error) {
           console.error(`Could not reset app install: ${error.message}`);
         } else {
           console.error('App install has been reseted.');
           
+          /*
+          Easiliy install new ghost apps: Set the value of the env variable
+          of GHOST_APPS in Heroku to ["myapp1", "myotherapp"] etc. to activate
+          them. The name of the app must correspond to the folder name in
+          /content/apps/.
+          */
           var query = "UPDATE settings SET `value` = '" + envValues.activeApps + "' WHERE `key` = 'active_apps';";
-
-          console.error(`Query: ${query}`);
-
           connection.query(query, function (error, results, fields) {
             if (error) {
               console.error(`Could not set active apps: ${error.message}`);
