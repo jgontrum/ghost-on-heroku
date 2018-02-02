@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+var mysql      = require('mysql');
+var envValues  = require('./common/env-values');
+
+console.error(`Awaiting MySQL database to initialize apps...`);
+pingDatabaseUntilConnected();
+
+function pingDatabaseUntilConnected() {
+  var connection = mysql.createConnection(envValues.mysqlDatabaseUrl);
+  connection.query('SELECT 1', function (error, results, fields) {
+    if (error) {
+      console.error(`Database not yet available: ${error.message}`);
+      setTimeout(pingDatabaseUntilConnected, 5000);
+    } else {
+      connection.query('UPDATE settings SET `value` = "" WHERE `key` = "installed_apps";', function (error, results, fields) {
+        if (error) {
+          console.error(`Could not reset app install: ${error.message}`);
+        } else {
+          console.error('App install has been reseted.');
+          
+          var query = 'UPDATE settings SET `value` = ' + envValues.activeApps + ' WHERE `key` = "active_apps";';
+          connection.query(query, function (error, results, fields) {
+            if (error) {
+              console.error(`Could not set active apps: ${error.message}`);
+            } else {
+              console.error(`Active apps have been set to: ${envValues.activeApps}`);
+              connection.end();
+              process.exit(0);
+            }
+          });
+        }
+      });
+    }
+  });
+}
