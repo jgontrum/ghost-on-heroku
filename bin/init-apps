@@ -19,7 +19,7 @@ function pingDatabaseUntilConnected() {
         } else {
           console.error('App install has been reseted.');
           
-          var query = 'UPDATE settings SET `value` = ' + envValues.activeApps + ' WHERE `key` = "active_apps";';
+          var query = 'UPDATE settings SET `value` = "' + envValues.activeApps + '" WHERE `key` = "active_apps";';
           connection.query(query, function (error, results, fields) {
             if (error) {
               console.error(`Could not set active apps: ${error.message}`);
